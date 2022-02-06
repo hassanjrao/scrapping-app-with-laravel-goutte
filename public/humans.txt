@@ -1,0 +1,8 @@
+/* TEAM */
+	Name: Muhammad Irfan Afzal
+	Role: Principal Software Engineer
+	Occupation: CEO & CTO
+	Office: CunerSolutions.com
+	Contact: mi3afzal.com
+	Twitter: @mi3afzal
+	From: Faisalabad, Pakistan
