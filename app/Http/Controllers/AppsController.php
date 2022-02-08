@@ -20,10 +20,6 @@ class AppsController extends Controller
         $client = new Client();
         $crawler = $client->request('GET', $url);
 
-        //print_r($crawler->filter('main > div.animation-wrapper > section > div.l-row--peek > a')->attr('class'));
-
-
-
 
 
         $apps = $crawler->filter('main > div.animation-wrapper > section > div.l-row--peek')->children()->each(function ($node, $i) {
@@ -32,10 +28,7 @@ class AppsController extends Controller
 
             return '<a href="' . $href . '">' . $node_html . '</a>';
 
-            //print $node->attr('href')."\n";
-            //print $node->filter('picture > img')->attr('src');
-            //print $node->filter('div.we-clamp')->text();
-            //print $node->text()."\n";
+          
         });
         return view('apps', compact('apps'));
     }

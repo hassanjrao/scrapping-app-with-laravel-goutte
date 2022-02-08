@@ -2,52 +2,91 @@
 
 @section('page_title', 'Home')
 
+@section('css_after')
+
+    <style>
+        .we-lockup__copy {}
+
+        .we-lockup__subtitle {
+
+            margin-top: -22px !important;
+
+        }
+
+        .we-artwork__image {
+            width: 160px !important;
+            height: 160px !important;
+            border-radius: 20px !important;
+        }
+
+    </style>
+
+
+@endsection
+
 @section('content')
 
 
     <div class="content content-boxed">
-        <div class="row">
 
 
+        <div class="row ">
 
-            <div class="col-lg-8">
+            @foreach ($developers as $developer)
 
-                <div class="row ">
+                @php
 
-                    @foreach ($developers as $developer)
+                    $url = 'https://apps.apple.com/us/developer/' . $developer->developer_name . '/' . $developer->developer_id;
 
-                        <div class="col-lg-4">
+                    $apps = [];
+                    $client = new Goutte\Client();
+                    $crawler = $client->request('GET', $url);
 
-                            <a class="block block-rounded block-link-pop overflow-hidden"
-                                href="{{ route('apps.show', [$developer->id, $developer->slug]) }}">
+                    $apps = $crawler
+                        ->filter('main > div.animation-wrapper > section > div.l-row--peek')
+                        ->children()
+                        ->each(function ($node, $i) {
+                            $href = $node->attr('href');
+                            $node_html = $node->html();
+
+                            return '<a href="' . $href . '">' . $node_html . '</a>';
+                        });
+
+                @endphp
+
+                <div class="row mb-4">
+
+                    <div class="col-lg-12">
+                        <h1>{{ $developer->developer_name }}</h1>
+                    </div>
+
+                    @foreach ($apps as $app)
+
+
+                        <div class="col-lg-2 col-sm-6 col-md-3">
+
                                 <div class="block-content text-center">
-                                    <h4 class="mb-1">
-                                        {{ $developer->developer_name }}
-                                    </h4>
-                                    <p class="fs-sm fw-medium mb-2">
-                                        {{ $developer->developer_id }}
-                                    </p>
+                                    {!! $app !!}
 
                                 </div>
-                            </a>
-                        </div>
 
+                        </div>
                     @endforeach
 
-
                 </div>
-            </div>
-
-
-
-            <!-- Story -->
-
-            <!-- END Story -->
+            @endforeach
 
 
         </div>
-
     </div>
+
+
+
+    <!-- Story -->
+
+    <!-- END Story -->
+
+
 
 
 
