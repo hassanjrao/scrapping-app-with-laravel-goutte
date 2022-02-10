@@ -77,7 +77,7 @@
 
                         <div>
 
-                                <div class="block-content text-center">
+                                <div class="block-content text-center mb-2">
                                     {!! $app !!}
 
                                 </div>
