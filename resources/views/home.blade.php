@@ -19,6 +19,14 @@
             border-radius: 20px !important;
         }
 
+
+        .games{
+            display: flex;
+            flex-wrap:nowrap;
+            overflow-x: auto
+        }
+
+
     </style>
 
 
@@ -54,16 +62,20 @@
 
                 @endphp
 
-                <div class="row mb-4">
+                <div class="row">
 
                     <div class="col-lg-12">
                         <h1>{{ $developer->developer_name }}</h1>
                     </div>
 
+                </div>
+
+                <div class="games">
+
                     @foreach ($apps as $app)
 
 
-                        <div class="col-lg-2 col-sm-6 col-md-3">
+                        <div>
 
                                 <div class="block-content text-center">
                                     {!! $app !!}
