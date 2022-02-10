@@ -70,7 +70,7 @@
 
                 </div>
 
-                <div class="games">
+                <div class="games mb-5">
 
                     @foreach ($apps as $app)
 
@@ -100,7 +100,7 @@
 
 
 
-
+<br><br>
 
 
 @endsection
